@@ -1,0 +1,13 @@
+root/
+    dir1/
+        file1.txt
+        file2.txt
+    dir2/
+        file3.txt
+        file4.txt
+        data/
+            part1.bin
+            part2.bin
+        system/
+            sys.info
+
