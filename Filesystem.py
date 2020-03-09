@@ -8,10 +8,18 @@ class MyFile(MyFileSystemObject):
         MyFileSystemObject.__init__(self, name)
         self.creation_date = date
 
+
+
 class MyFolder(MyFileSystemObject):
     def __init__(self, name):
         MyFileSystemObject.__init__(self, name)
-        self.data = []
+        self.contents= []
+
+    def add_element(self, element):
+        self.contents.append(element)
+
+
+
         
 
 
