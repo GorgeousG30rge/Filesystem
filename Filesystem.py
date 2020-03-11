@@ -12,6 +12,10 @@ class MyFile(MyFileSystemObject):
 
     def show_contents(self, i):
         print('\t' * i, self.name)
+
+    def clone(self, obj):
+        clone = obj
+        return clone
         
 
 
@@ -31,6 +35,10 @@ class MyFolder(MyFileSystemObject):
         for element in self.contents:
             element.show_contents(i + 1)
         print('\t')
+
+    def clone(self, obj):
+        clone = obj
+        return clone
 
 
 """ Метод clone:
