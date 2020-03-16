@@ -54,7 +54,7 @@ class Caretaker:
 
     def show_storage(self):
         for i, copy in enumerate(self.storage):
-            print(i, copy)
+            print(i, copy.name)
 
     def restore_copy(self, index):
         return self.storage[index]
