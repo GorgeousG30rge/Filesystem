@@ -69,7 +69,8 @@ class MyFolder(MyFileSystemObject):
     def store_copy(self):
         return Storage.store_copy(self.clone())
 
-    def restore_copy(self, copy):
+    def restore_copy(self, index):
+        copy = Storage.restore_copy(index)
         self.name = copy.name
         self.creation_date = copy.creation_date 
         self.contents = copy.contents
