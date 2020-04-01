@@ -1,3 +1,7 @@
+from Caretaker import Caretaker
+
+Storage = Caretaker()
+
 class MyFileSystemObject:
     def __init__(self, name, date):
         self.name = name
@@ -18,6 +22,18 @@ class MyFile(MyFileSystemObject):
         clone = MyFile(self.name, self.creation_date)
         clone.content = self.content
         return clone
+    
+    def __apply__(self, copy):
+        self.content = copy.content
+        self.date = copy.creation_date
+        self.name = copy.name
+
+    def store_copy(self):
+        return Storage.store_copy(self.clone())
+		
+    def restore_copy(self, index):
+        copy = Storage.restore_copy(index)
+        self.__apply__(copy)
         
 
 
@@ -43,24 +59,34 @@ class MyFolder(MyFileSystemObject):
         clone = MyFolder(self.name, self.creation_date)
         for element in self.contents:
             clone.contents.append(element.clone())
-
         return clone
 
+    def __apply__(self, copy):
+        self.name = copy.name
+        self.creation_date = copy.creation_date
+        self.contents = 0 # Здесь должно быть скопированное содержание списка
+
+    def store_copy(self):
+        return Storage.store_copy(self.clone())
+
+    def restore_copy(self, copy):
+        self.name = copy.name
+        self.creation_date = copy.creation_date 
+        self.contents = copy.contents
+        self.__apply__(copy)
+
+Storage.show_storage()
 
 
-class Caretaker:
-    def __init__(self):
-        self.storage = []
 
-    def show_storage(self):
-        for i, copy in enumerate(self.storage):
-            print(i, copy.name)
+        
 
-    def restore_copy(self, index):
-        return self.storage[index]
 
-    def store_copy(self, copy):
-        self.storage.append(copy)
+        
+
+
+
+
         
 
 
